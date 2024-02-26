@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { DataService } from '../../core/data.service';
-import { switchMap } from 'rxjs';
+import { startWith, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-form',
@@ -49,11 +49,13 @@ export class FormComponent {
         options: []
       },
       expressionProperties: { //-- Este campo se utiliza para crear condiciones. En este caso se crea la condición de que debe haber seleccionado un pais para poder utilizar el input de ciudades, sino este se queda deshabilitado.
-        'templateOptions.disabled': (model) => !model.nationId
+        'templateOptions.disabled': (model) => !model.nationId,
+        'model.cityId': '!model.nationId ? null : model.cityId' //-- Con esto tb queda actualizado el modelo, si no hay una ciudad seleccionada, no se asigna cityId al modelo.
       },
       hooks: { //-- Esta función sirve para constrolar los ciclos de ejecución, y en este caso sirve para mostrar las ciudades de la lista dependiendo del pais seleccionado.
         onInit: (field: FormlyFieldConfig) => {
           field.templateOptions.options = field.form.get('nationId').valueChanges.pipe(
+            startWith(this.model.nationId),
             switchMap(nationId => this.dataService.getCities(nationId))
           )
         }
