@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, ValidationErrors } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { DataService } from '../../core/data.service';
 import { startWith, switchMap } from 'rxjs';
@@ -17,7 +17,8 @@ export class FormComponent {
     firstname: 'Juri',
     age: 34,
     nationId: 2,
-    cityId: 1
+    cityId: 1,
+    ip: null
   }; //-- Esto es lo que hice con los icrc. Los JSON, son los modelos del formulario.
   fields: FormlyFieldConfig[] = [
     {
@@ -72,6 +73,17 @@ export class FormComponent {
             switchMap(nationId => this.dataService.getCities(nationId))
           )
         }
+      }
+    },
+    {
+      key: 'ip',
+      type: 'input',
+      templateOptions: {
+        label: 'IP Address',
+        required: true
+      },
+      validators: {
+        validation: ['ip']
       }
     }
   ];
