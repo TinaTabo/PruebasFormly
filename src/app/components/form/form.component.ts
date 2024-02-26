@@ -48,7 +48,8 @@ export class FormComponent {
     },
     {
       key: 'nationId',
-      type: 'select',
+      type: 'my-autocomplete', //-- Tipo creado con ng-select.
+      //-- type: 'select',
       templateOptions: {
         label: 'Nation',
         options: this.dataService.getNations()

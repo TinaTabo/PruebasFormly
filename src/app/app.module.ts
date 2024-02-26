@@ -7,6 +7,8 @@ import { FormControl, ReactiveFormsModule, ValidationErrors } from '@angular/for
 import { FormlyFieldConfig, FormlyModule } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { FormComponent } from './components/form/form.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { NgSelectFormlyComponent } from './components/form/ng-select.type';
 
 //-- Funciones de validación. Estas funciones las creamos personalizadas nosotros.
 export function minValidationMessage(err, field: FormlyFieldConfig) {
@@ -24,12 +26,14 @@ export function IpValidator(control: FormControl): ValidationErrors {  //-- Func
 @NgModule({
   declarations: [
     AppComponent,
-    FormComponent
+    FormComponent,
+    NgSelectFormlyComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    NgSelectModule,
     FormlyModule.forRoot({
       validators: [
         {
@@ -49,6 +53,12 @@ export function IpValidator(control: FormControl): ValidationErrors {  //-- Func
         {
           name: 'ip',
           message: ipValidationMessage
+        }
+      ],
+      types: [
+        {
+          name: 'my-autocomplete',
+          component: NgSelectFormlyComponent
         }
       ]
     }),
