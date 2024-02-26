@@ -4,10 +4,14 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FormlyModule } from '@ngx-formly/core';
+import { FormlyFieldConfig, FormlyModule } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { FormComponent } from './components/form/form.component';
 
+//-- Funciones de validación
+export function minValidationMessage(err, field: FormlyFieldConfig) {
+  return `Please provide a value bigger than ${err.min}. You provided ${err.actual}`;
+}
 
 @NgModule({
   declarations: [
@@ -23,6 +27,10 @@ import { FormComponent } from './components/form/form.component';
         {
           name: 'required',
           message: 'This field is required'
+        },
+        {
+          name: 'min',
+          message: minValidationMessage
         }
       ]
     }),

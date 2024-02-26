@@ -36,7 +36,8 @@ export class FormComponent {
       type: 'input',
       templateOptions: {
         type: 'number', //-- Aqui podemos modificar el tipo de input, por defecto es text (cuando no ponemos nada)
-        label: 'Age'
+        label: 'Age',
+        min: 18
       }
     },
     {
