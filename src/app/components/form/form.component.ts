@@ -52,6 +52,7 @@ export class FormComponent {
         'templateOptions.disabled': (model) => !model.nationId,
         'model.cityId': '!model.nationId ? null : model.cityId' //-- Con esto tb queda actualizado el modelo, si no hay una ciudad seleccionada, no se asigna cityId al modelo.
       },
+      hideExpression: '!model.nationId', //-- Esconde el input cities si no se ha seleccionado un pais.
       hooks: { //-- Esta función sirve para constrolar los ciclos de ejecución, y en este caso sirve para mostrar las ciudades de la lista dependiendo del pais seleccionado.
         onInit: (field: FormlyFieldConfig) => {
           field.templateOptions.options = field.form.get('nationId').valueChanges.pipe(
