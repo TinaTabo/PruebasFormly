@@ -9,6 +9,7 @@ import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { FormComponent } from './components/form/form.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgSelectFormlyComponent } from './components/form/ng-select.type';
+import { dataCyExtension } from './components/form/data-cy.extension';
 
 //-- Funciones de validación. Estas funciones las creamos personalizadas nosotros.
 export function minValidationMessage(err, field: FormlyFieldConfig) {
@@ -59,6 +60,12 @@ export function IpValidator(control: FormControl): ValidationErrors {  //-- Func
         {
           name: 'my-autocomplete',
           component: NgSelectFormlyComponent
+        }
+      ],
+      extensions: [
+        {
+          name: 'data-cy-extension',
+          extension: dataCyExtension
         }
       ]
     }),
