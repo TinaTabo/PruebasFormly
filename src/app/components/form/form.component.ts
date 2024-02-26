@@ -20,6 +20,14 @@ export class FormComponent {
       templateOptions: {
         label: 'Firstname'
       }
+    },
+    {
+      key: 'age',
+      type: 'input',
+      templateOptions: {
+        type: 'number', //-- Aqui podemos modificar el tipo de input, por defecto es text (cuando no ponemos nada)
+        label: 'Age'
+      }
     }
   ];
 
