@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
+import { DataService } from '../../core/data.service';
 
 @Component({
   selector: 'app-form',
@@ -11,7 +12,8 @@ export class FormComponent {
   form = new FormGroup({});
   model = {
     firstname: 'Juri',
-    age: 34
+    age: 34,
+    nationId: 2
   }; //-- Esto es lo que hice con los icrc. Los JSON, son los modelos del formulario.
   fields: FormlyFieldConfig[] = [
     {
@@ -28,8 +30,18 @@ export class FormComponent {
         type: 'number', //-- Aqui podemos modificar el tipo de input, por defecto es text (cuando no ponemos nada)
         label: 'Age'
       }
+    },
+    {
+      key: 'nationId',
+      type: 'select',
+      templateOptions: {
+        label: 'Nation',
+        options: this.dataService.getNations()
+      }
     }
   ];
+
+  constructor(private dataService: DataService) {}
 
   onSubmit({valid, value}){
     console.log(value);
