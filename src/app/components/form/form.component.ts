@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { DataService } from '../../core/data.service';
 import { startWith, switchMap } from 'rxjs';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-form',
@@ -12,12 +13,16 @@ import { startWith, switchMap } from 'rxjs';
 export class FormComponent {
   form = new FormGroup({});
   model = {
+    id: uuidv4(),
     firstname: 'Juri',
     age: 34,
     nationId: 2,
     cityId: 1
   }; //-- Esto es lo que hice con los icrc. Los JSON, son los modelos del formulario.
   fields: FormlyFieldConfig[] = [
+    {
+      key: 'id'
+    },
     {
       key: 'firstname',
       type: 'input',
