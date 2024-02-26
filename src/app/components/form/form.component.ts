@@ -38,6 +38,11 @@ export class FormComponent {
         type: 'number', //-- Aqui podemos modificar el tipo de input, por defecto es text (cuando no ponemos nada)
         label: 'Age',
         min: 18
+      },
+      validation: { //-- Aunque tengamos validadores generales desde app.module.ts, en ocasiones para el mismo tipo de validación podemos querer un mensaje deferente. De esta manera sobrescribimos el mensaje general por une personalizado a este input.
+        messages: {
+          min: 'Sorry, you have to be older than 18'
+        }
       }
     },
     {

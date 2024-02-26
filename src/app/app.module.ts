@@ -8,7 +8,7 @@ import { FormlyFieldConfig, FormlyModule } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { FormComponent } from './components/form/form.component';
 
-//-- Funciones de validación
+//-- Funciones de validación. Estas funciones las creamos personalizadas nosotros.
 export function minValidationMessage(err, field: FormlyFieldConfig) {
   return `Please provide a value bigger than ${err.min}. You provided ${err.actual}`;
 }
@@ -30,7 +30,7 @@ export function minValidationMessage(err, field: FormlyFieldConfig) {
         },
         {
           name: 'min',
-          message: minValidationMessage
+          message: minValidationMessage //-- Llamada a la función personalizada.
         }
       ]
     }),
