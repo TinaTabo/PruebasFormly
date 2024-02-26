@@ -18,7 +18,14 @@ import { FormComponent } from './components/form/form.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormlyModule.forRoot(),
+    FormlyModule.forRoot({
+      validationMessages: [ //-- Aquí creamos las distintas validaciones con sus respectivos mensajes.
+        {
+          name: 'required',
+          message: 'This field is required'
+        }
+      ]
+    }),
     FormlyBootstrapModule
   ],
   providers: [

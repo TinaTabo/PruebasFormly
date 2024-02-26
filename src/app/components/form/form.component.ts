@@ -21,13 +21,14 @@ export class FormComponent {
   }; //-- Esto es lo que hice con los icrc. Los JSON, son los modelos del formulario.
   fields: FormlyFieldConfig[] = [
     {
-      key: 'id'
+      key: 'id' //-- Este campo no se ve en el template pero si forma parte del objeto.
     },
     {
       key: 'firstname',
       type: 'input',
       templateOptions: {
-        label: 'Firstname'
+        label: 'Firstname',
+        required: true //-- Validadores, este indica que este campo es obligatorio.
       }
     },
     {
